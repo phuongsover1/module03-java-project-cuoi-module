@@ -13,6 +13,14 @@ public class Account {
   private Role role;
   private BigDecimal totalCurrentMoney;
 
+  public Account() {
+  }
+
+  public Account(String username, String password) {
+    this.username = username;
+    this.password = password;
+  }
+
   public BigDecimal getTotalCurrentMoney() {
     return totalCurrentMoney;
   }

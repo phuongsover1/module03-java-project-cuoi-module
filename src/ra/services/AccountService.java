@@ -133,13 +133,16 @@ public class AccountService implements IServiceMapGenerics<Account, String> {
   public Optional<Account> getLoginAccount(String username, String password) {
     Optional<Account> accountOptional = Optional.ofNullable(null);
     Optional<Account> returnedAccountOptional = findById(username);
-    if (!returnedAccountOptional.isEmpty()) {
+    if (returnedAccountOptional.isPresent()) {
       Account tempAccount = returnedAccountOptional.get();
       if (tempAccount.getPassword().equals(password)) {
-
+        accountOptional = returnedAccountOptional;
+      } else {
+        System.err.println("Mật khẩu không đúng!!!");
       }
+    } else {
+      System.err.println("Tên tài khoản không đúng!!!");
     }
-
     return accountOptional;
   }
 
