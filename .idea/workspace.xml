@@ -5,16 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f5fc06bd-9226-4bd9-a69d-5283c1b6a0fb" name="Changes" comment="Xong phần thêm thông tin cho tài khoản">
-      <change afterPath="$PROJECT_DIR$/src/ra/data/accounts.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ra/utility/Utility.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ra/controllers/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ra/controllers/AdminController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ra/controllers/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ra/controllers/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ra/model/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ra/model/Account.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ra/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ra/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ra/run/FashionShop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ra/run/FashionShop.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ra/data/accounts.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/ra/data/accounts.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ra/services/AccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ra/services/AccountService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ra/services/IOCollectionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ra/services/IOCollectionService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ra/services/IOMapService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ra/services/IOMapService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,6 +26,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="2SF8gL9Ztg7bQIsBeOk4I114LdT" />

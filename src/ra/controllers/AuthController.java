@@ -10,7 +10,6 @@ import java.util.Scanner;
 
 public class AuthController {
   private final static AccountService accountService = new AccountService();
-  private final static AdminController adminController = new AdminController();
 
   private final static Scanner authSC = FashionShop.sc;
 
@@ -62,6 +61,7 @@ public class AuthController {
         luachon = Integer.parseInt(authSC.nextLine());
         switch (luachon) {
           case 1 -> {
+            findAll();
             login();
             if (!currentAccount.getUsername().equals(""))
               return true;

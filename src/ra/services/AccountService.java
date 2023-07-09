@@ -6,12 +6,10 @@ import ra.model.Account;
 import ra.model.User;
 import ra.utility.Utility;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Scanner;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class AccountService implements IServiceMapGenerics<Account, String> {
   private static final Map<String, Account> accountMap;
@@ -90,7 +88,7 @@ public class AccountService implements IServiceMapGenerics<Account, String> {
 
   private void inputEmail(Scanner sc, User user) {
     String email;
-    Pattern emailPattern = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,}$",Pattern.CASE_INSENSITIVE);
+    Pattern emailPattern = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,}$", Pattern.CASE_INSENSITIVE);
 
     while (true) {
       System.out.print("Nhập email của bạn: ");
@@ -104,6 +102,17 @@ public class AccountService implements IServiceMapGenerics<Account, String> {
         System.err.println("Email đã nhập khong đúng định dạng. Xin vui lòng nhập lại!!!");
         continue;
       }
+      List<String> allEmail = accountMap.values().parallelStream().map(account -> account.getUserDetail().getEmail()).sorted(new Comparator<String>() {
+        @Override
+        public int compare(String o1, String o2) {
+          return o1.compareToIgnoreCase(o2);
+        }
+      }).toList();
+      int indexEmailExist =  Collections.binarySearch(allEmail, email);
+      if (indexEmailExist >= 0)  {
+        System.err.println("Email đã tồn tại trên tài khoản khác. Xin vui lòng chọn email khác!!!");
+        continue;
+      }
       user.setEmail(email);
       break;
     }
@@ -111,7 +120,7 @@ public class AccountService implements IServiceMapGenerics<Account, String> {
 
   private void inputSex(Scanner sc, User user) {
     int luachon;
-    while(true) {
+    while (true) {
       try {
         System.out.println("Chọn giới tính của bạn: ");
         System.out.println("1. Nam");
@@ -133,7 +142,7 @@ public class AccountService implements IServiceMapGenerics<Account, String> {
     }
   }
 
-  private void inputPhoneNumber(Scanner sc, User user){
+  private void inputPhoneNumber(Scanner sc, User user) {
     String phoneNumber;
     Pattern phoneNumberPatter = Pattern.compile("^0[0-9]{9,10}$");
     while (true) {
@@ -143,10 +152,21 @@ public class AccountService implements IServiceMapGenerics<Account, String> {
         System.err.println("Số điện thoại không được để trống. Xin vui lòng nhập lại!!!");
         continue;
       }
-      System.out.println(phoneNumber.length());
       Matcher phoneNumberMatcher = phoneNumberPatter.matcher(phoneNumber);
       if (!phoneNumberMatcher.matches()) {
         System.err.println("Định dạng số điện thoại không hợp lệ. Xin vui lòng nhập lại ");
+        continue;
+      }
+
+      List<String> allPhoneNumber = accountMap.values().parallelStream().map(account -> account.getUserDetail().getPhoneNumber()).sorted(new Comparator<String>() {
+        @Override
+        public int compare(String o1, String o2) {
+          return o1.compareTo(o2);
+        }
+      }).toList();
+      int indexPhoneNumberlExist =  Collections.binarySearch(allPhoneNumber, phoneNumber);
+      if (indexPhoneNumberlExist >= 0)  {
+        System.err.println("Số điện thoại đã tồn tại trên tài khoản khác. Xin vui lòng chọn số điện thoại khác!!!");
         continue;
       }
       user.setPhoneNumber(phoneNumber);
