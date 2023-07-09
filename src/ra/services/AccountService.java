@@ -9,7 +9,6 @@ import ra.utility.Utility;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 public class AccountService implements IServiceMapGenerics<Account, String> {
   private static final Map<String, Account> accountMap;
@@ -52,6 +51,15 @@ public class AccountService implements IServiceMapGenerics<Account, String> {
     inputUsername(sc, newAccount);
     inputPassword(sc, newAccount);
     inputRole(sc, newAccount);
+    inputAccountProfile(sc, newAccount);
+    save(newAccount);
+  }
+
+  public void createAdminAccount(Scanner sc) {
+    Account newAccount = new Account();
+    newAccount.setRole(Role.ADMIN);
+    inputUsername(sc, newAccount);
+    inputPassword(sc, newAccount);
     inputAccountProfile(sc, newAccount);
     save(newAccount);
   }
@@ -108,8 +116,8 @@ public class AccountService implements IServiceMapGenerics<Account, String> {
           return o1.compareToIgnoreCase(o2);
         }
       }).toList();
-      int indexEmailExist =  Collections.binarySearch(allEmail, email);
-      if (indexEmailExist >= 0)  {
+      int indexEmailExist = Collections.binarySearch(allEmail, email);
+      if (indexEmailExist >= 0) {
         System.err.println("Email đã tồn tại trên tài khoản khác. Xin vui lòng chọn email khác!!!");
         continue;
       }
@@ -164,8 +172,8 @@ public class AccountService implements IServiceMapGenerics<Account, String> {
           return o1.compareTo(o2);
         }
       }).toList();
-      int indexPhoneNumberlExist =  Collections.binarySearch(allPhoneNumber, phoneNumber);
-      if (indexPhoneNumberlExist >= 0)  {
+      int indexPhoneNumberlExist = Collections.binarySearch(allPhoneNumber, phoneNumber);
+      if (indexPhoneNumberlExist >= 0) {
         System.err.println("Số điện thoại đã tồn tại trên tài khoản khác. Xin vui lòng chọn số điện thoại khác!!!");
         continue;
       }
@@ -279,5 +287,78 @@ public class AccountService implements IServiceMapGenerics<Account, String> {
     return accountOptional;
   }
 
+  public void changeAccountStatus(Scanner sc) {
+    String username;
+    while (true) {
+      System.out.print("Nhập tên tài khoản mà muốn thay đổi (Nhập 0 nếu muốn thoát): ");
+      username = sc.nextLine().trim();
+      if (username.equals("")) {
+        System.err.println("Tên tài khoản không được để trống. Xin vui lòng nhập lại ");
+        continue;
+      }
+      if (username.equals("0")) {
+        break;
+      }
+      Optional<Account> accountOptional = findById(username);
+      if (accountOptional.isPresent()) {
+        Account account = accountOptional.get();
+        System.out.println("==== THÔNG TIN TÀI KHOẢN ====");
+        System.out.println("Tên tài khoản: " + account.getUsername());
+        System.out.println("Quyền tài khoản: " + account.getRole());
+        System.out.println("Trạng thái tài khoản: " + (account.isStatus() ? "Đang hoạt động" : "Đã bị khóa"));
+
+        if (account.isStatus()) {
+          int luachon;
+          while (true) {
+            try {
+              System.out.println("Bạn có muốn khóa tài khoản ?");
+              System.out.println("1. Có");
+              System.out.println("2. Không");
+              luachon = Integer.parseInt(sc.nextLine());
+              if (luachon < 1 || luachon > 2){
+                System.err.println("Lựa chọn không hợp lệ.");
+                continue;
+              }
+
+              if (luachon == 1) {
+                account.setStatus(false);
+                System.out.println("Khóa tài khoản thành công");
+                IOAccount.writeToFile(Utility.ACCOUNT_FILE, accountMap);
+              }
+              break;
+            } catch (NumberFormatException ex) {
+              System.err.println("Lựa chọn không hợp lệ");
+            }
+          }
+        } else {
+          int luachon;
+          while (true) {
+            try {
+              System.out.println("Bạn có muốn mở khóa tài khoản ?");
+              System.out.println("1. Có");
+              System.out.println("2. Không");
+              luachon = Integer.parseInt(sc.nextLine());
+              if (luachon < 1 || luachon > 2){
+                System.err.println("Lựa chọn không hợp lệ.");
+                continue;
+              }
+
+              if (luachon == 1) {
+                account.setStatus(true);
+                System.out.println("Mở khóa tài khoản thành công");
+                IOAccount.writeToFile(Utility.ACCOUNT_FILE, accountMap);
+              }
+              break;
+            } catch (NumberFormatException ex) {
+              System.err.println("Lựa chọn không hợp lệ");
+            }
+          }
+        }
+      } else {
+        System.err.println("Không tồn tại tài khoản nào ứng với tên tài khoản ");
+      }
+    }
+
+  }
 
 }

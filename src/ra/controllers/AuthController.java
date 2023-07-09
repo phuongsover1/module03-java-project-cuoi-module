@@ -44,7 +44,13 @@ public class AuthController {
       break;
     }
     Optional<Account> returnedAccountOptional = accountService.getLoginAccount(username, password);
-    returnedAccountOptional.ifPresent(account -> currentAccount = account);
+    returnedAccountOptional.ifPresent(account -> {
+      if (account.isStatus()) {
+        currentAccount = account;
+      } else {
+        System.err.println("Tài khoản đã bị khóa!!!");
+      }
+    });
   }
 
   private void findAll() {
@@ -65,6 +71,7 @@ public class AuthController {
             login();
             if (!currentAccount.getUsername().equals(""))
               return true;
+
           }
 
           case 2 -> register();
