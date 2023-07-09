@@ -4,6 +4,7 @@ import ra.enums.Role;
 import ra.enums.Sex;
 import ra.model.Account;
 import ra.model.User;
+import ra.utility.Utility;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,16 +14,28 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class AccountService implements IServiceMapGenerics<Account, String> {
-  private static final Map<String, Account> accountMap = new HashMap<>();
+  private static final Map<String, Account> accountMap;
+  private static final IOMapService<Account, String> IOAccount = new IOMapService<>();
+
+  static {
+    Map<String, Account> accountMapFromFile;
+    accountMapFromFile = IOAccount.readFromFile(Utility.ACCOUNT_FILE);
+    if (accountMapFromFile == null) {
+      accountMapFromFile = new HashMap<>();
+    }
+    accountMap = accountMapFromFile;
+  }
 
   @Override
   public void save(Account account) {
     accountMap.put(account.getUsername(), account);
+    IOAccount.writeToFile(Utility.ACCOUNT_FILE, accountMap);
   }
 
   @Override
   public void delete(String username) {
     accountMap.remove(username);
+    IOAccount.writeToFile(Utility.ACCOUNT_FILE, accountMap);
   }
 
   @Override

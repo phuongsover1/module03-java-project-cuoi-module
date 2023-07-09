@@ -8,12 +8,11 @@ public class IOCollectionService<T> {
     Collection<T> list = null;
     try(ObjectInputStream ois = new ObjectInputStream(new BufferedInputStream(new FileInputStream((file))))) {
         list = (Collection<T>) ois.readObject();
-    } catch (FileNotFoundException e) {
-      throw new RuntimeException(e);
-    } catch (IOException e) {
-      throw new RuntimeException(e);
-    } catch (ClassNotFoundException e) {
-      throw new RuntimeException(e);
+    } catch (EOFException ex){
+
+    }
+    catch (IOException | ClassNotFoundException e) {
+      e.printStackTrace();
     }
     return list;
   }
@@ -22,9 +21,9 @@ public class IOCollectionService<T> {
     try (ObjectOutputStream oos = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(file)))) {
       oos.writeObject(list);
     } catch (FileNotFoundException e) {
-      throw new RuntimeException(e);
+      e.printStackTrace();
     } catch (IOException e) {
-      throw new RuntimeException(e);
+      e.printStackTrace();
     }
   }
 

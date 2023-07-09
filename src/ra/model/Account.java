@@ -2,10 +2,11 @@ package ra.model;
 
 import ra.enums.Role;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Objects;
 
-public class Account {
+public class Account implements Serializable {
   private String username;
   private String password;
   private User userDetail;

@@ -2,7 +2,9 @@ package ra.model;
 
 import ra.enums.Sex;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
   private Sex sex;
   private String fullName;
   private String email;

@@ -4,15 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f5fc06bd-9226-4bd9-a69d-5283c1b6a0fb" name="Changes" comment=" xong đăng nhập và đăng kí">
-      <change afterPath="$PROJECT_DIR$/src/ra/controllers/AdminController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ra/controllers/UserController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ra/enums/Sex.java" afterDir="false" />
+    <list default="true" id="f5fc06bd-9226-4bd9-a69d-5283c1b6a0fb" name="Changes" comment="Xong phần thêm thông tin cho tài khoản">
+      <change afterPath="$PROJECT_DIR$/src/ra/data/accounts.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ra/utility/Utility.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ra/controllers/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ra/controllers/AuthController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ra/model/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ra/model/Account.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ra/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ra/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ra/run/FashionShop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ra/run/FashionShop.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ra/services/AccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ra/services/AccountService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ra/services/IOCollectionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ra/services/IOCollectionService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ra/services/IOMapService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ra/services/IOMapService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,16 +39,16 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "new-feature",
-    "last_opened_file_path": "/run/media/phuong/DATA/Frontend_Web_Development/rikkei/BaiTap_RikkeiAcademy/Module03-Java/project-cuoi-khoa",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;new-feature&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/run/media/phuong/DATA/Frontend_Web_Development/rikkei/BaiTap_RikkeiAcademy/Module03-Java/project-cuoi-khoa&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -80,7 +82,15 @@
       <option name="project" value="LOCAL" />
       <updated>1688882429518</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Xong phần thêm thông tin cho tài khoản">
+      <option name="closed" value="true" />
+      <created>1688888091109</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1688888091109</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -98,6 +108,7 @@
     <MESSAGE value="initial commit" />
     <MESSAGE value=" ngay 1" />
     <MESSAGE value=" xong đăng nhập và đăng kí" />
-    <option name="LAST_COMMIT_MESSAGE" value=" xong đăng nhập và đăng kí" />
+    <MESSAGE value="Xong phần thêm thông tin cho tài khoản" />
+    <option name="LAST_COMMIT_MESSAGE" value="Xong phần thêm thông tin cho tài khoản" />
   </component>
 </project>
