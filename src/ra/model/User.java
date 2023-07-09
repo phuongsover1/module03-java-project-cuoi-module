@@ -1,16 +1,18 @@
 package ra.model;
 
+import ra.enums.Sex;
+
 public class User {
-  private boolean sex;
+  private Sex sex;
   private String fullName;
   private String email;
   private String phoneNumber;
 
-  public boolean isSex() {
+  public Sex getSex() {
     return sex;
   }
 
-  public void setSex(boolean sex) {
+  public void setSex(Sex sex) {
     this.sex = sex;
   }
 
@@ -41,7 +43,7 @@ public class User {
   @Override
   public String toString() {
     return "Thông tin người dùng {" +
-            "Giới tính=" + (sex ? "Nam" : "Nữ") +
+            "Giới tính=" + sex.name() +
             ", Họ và tên='" + fullName + '\'' +
             ", email='" + email + '\'' +
             ", Số điện thoại='" + phoneNumber + '\'' +

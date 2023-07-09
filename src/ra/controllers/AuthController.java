@@ -11,19 +11,18 @@ public class AuthController {
   private final static AccountService accountService = new AccountService();
   private final static Scanner authSC = FashionShop.sc;
 
-  private static  Account currentAccount = new Account("", "");
+  private static Account currentAccount = new Account("", "");
 
   private void register() {
     System.out.println("==== ĐĂNG KÍ ====");
     accountService.createNewAccount(authSC);
   }
 
-  // TODO: Làm phần đăng nhập
   private void login() {
     System.out.println("==== ĐĂNG NHẬP ====");
     String username;
     String password;
-    while(true) {
+    while (true) {
       System.out.print("Nhập tên tài khoản: ");
       username = authSC.nextLine().trim();
       if (username.equals("")) {
@@ -33,7 +32,7 @@ public class AuthController {
       break;
     }
 
-    while(true) {
+    while (true) {
       System.out.print("Nhập mật khẩu: ");
       password = authSC.nextLine().trim();
       if (password.equals("")) {
@@ -42,7 +41,7 @@ public class AuthController {
       }
       break;
     }
-    Optional<Account> returnedAccountOptional = accountService.getLoginAccount(username,password);
+    Optional<Account> returnedAccountOptional = accountService.getLoginAccount(username, password);
     returnedAccountOptional.ifPresent(account -> currentAccount = account);
   }
 
@@ -60,19 +59,20 @@ public class AuthController {
         displayMenu();
         luachon = Integer.parseInt(authSC.nextLine());
         switch (luachon) {
-          case 1:
+          case 1 -> {
             login();
-            System.out.println(currentAccount);
-            break;
-          case 2:
-            register();
-            break;
-          case 3:
+            // TODO: Thực hiện chức năng nghiệp vụ trong đây
+            // TODO: Nếu ROLE hiện tại là USER thì hiện menu USER, tương tự với ADMIN
+            // TODO:  Cuối chức năng luôn có 1 chức năng đăng xuất
+
+          }
+
+          case 2 -> register();
+          case 3 -> {
             System.out.println("Chào tạm biệt");
             isExit = true;
-            break;
-          default:
-            System.err.println("Lựa khọn không hợp lệ");
+          }
+          default -> System.err.println("Lựa khọn không hợp lệ");
         }
 
       } catch (NumberFormatException ex) {

@@ -75,6 +75,7 @@ public class Account {
             "Tên tài khoản='" + username + '\'' +
             ", Mật khẩu='" + password + '\'' +
             ", Trạng thái=" + (status ? "Đang hoạt động" : "Đã bị khóa") +
+            userDetail +
             '}';
   }
 

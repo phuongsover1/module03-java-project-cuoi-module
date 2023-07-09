@@ -1,7 +1,9 @@
 package ra.services;
 
 import ra.enums.Role;
+import ra.enums.Sex;
 import ra.model.Account;
+import ra.model.User;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -39,11 +41,104 @@ public class AccountService implements IServiceMapGenerics<Account, String> {
     inputUsername(sc, newAccount);
     inputPassword(sc, newAccount);
     inputRole(sc, newAccount);
+    inputAccountProfile(sc, newAccount);
     save(newAccount);
   }
 
+
   public void updateAccount(Scanner sc) {
 
+  }
+
+  private void inputAccountProfile(Scanner sc, Account account) {
+    System.out.println("==== ĐÃ ĐĂNG KÍ TÀI KHOẢN THÀNH CÔNG. XIN HÃY NHẬP THÊM THÔNG TIN CHO TÀI KHOẢN ====");
+    User user = new User();
+    inputFullName(sc, user);
+    inputEmail(sc, user);
+    inputSex(sc, user);
+    inputPhoneNumber(sc, user);
+    System.out.println("==== CẬP NHẬT THÔNG TIN TÀI KHOẢN THÀNH CÔNG ====");
+    account.setUserDetail(user);
+  }
+
+  private void inputFullName(Scanner sc, User user) {
+    String fullName;
+    while (true) {
+      System.out.print("Nhập đầy đủ họ và tên: ");
+      fullName = sc.nextLine().trim();
+      if (fullName.equals("")) {
+        System.err.println("Họ tên không hợp lệ. Xin vui lòng nhập lại!!!");
+        continue;
+      }
+      user.setFullName(fullName);
+      break;
+    }
+  }
+
+  private void inputEmail(Scanner sc, User user) {
+    String email;
+    Pattern emailPattern = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,}$",Pattern.CASE_INSENSITIVE);
+
+    while (true) {
+      System.out.print("Nhập email của bạn: ");
+      email = sc.nextLine().trim();
+      if (email.equals("")) {
+        System.err.println("Email không được để trống. Xin vui lòng nhập lại!!!");
+        continue;
+      }
+      Matcher emailMatcher = emailPattern.matcher(email);
+      if (!emailMatcher.matches()) {
+        System.err.println("Email đã nhập khong đúng định dạng. Xin vui lòng nhập lại!!!");
+        continue;
+      }
+      user.setEmail(email);
+      break;
+    }
+  }
+
+  private void inputSex(Scanner sc, User user) {
+    int luachon;
+    while(true) {
+      try {
+        System.out.println("Chọn giới tính của bạn: ");
+        System.out.println("1. Nam");
+        System.out.println("2. Nữ");
+        System.out.print("Lựa chọn của bạn: ");
+        luachon = Integer.parseInt(sc.nextLine());
+        switch (luachon) {
+          case 1 -> user.setSex(Sex.NAM);
+          case 2 -> user.setSex(Sex.NU);
+          default -> {
+            System.err.println("Lựa chọn không hợp lệ. Hãy nhập lại");
+            continue;
+          }
+        }
+        break;
+      } catch (NumberFormatException ex) {
+        System.err.println("Lựa chọn không hợp lệ. Hãy nhập lại!!!");
+      }
+    }
+  }
+
+  private void inputPhoneNumber(Scanner sc, User user){
+    String phoneNumber;
+    Pattern phoneNumberPatter = Pattern.compile("^0[0-9]{9,10}$");
+    while (true) {
+      System.out.print("Nhập số điện thoại (có độ dài là 10 hoặc 11 số, bắt đầu bằng số 0: ");
+      phoneNumber = sc.nextLine().trim();
+      if (phoneNumber.equals("")) {
+        System.err.println("Số điện thoại không được để trống. Xin vui lòng nhập lại!!!");
+        continue;
+      }
+      System.out.println(phoneNumber.length());
+      Matcher phoneNumberMatcher = phoneNumberPatter.matcher(phoneNumber);
+      if (!phoneNumberMatcher.matches()) {
+        System.err.println("Định dạng số điện thoại không hợp lệ. Xin vui lòng nhập lại ");
+        continue;
+      }
+      user.setPhoneNumber(phoneNumber);
+      break;
+    }
   }
 
   private void inputUsername(Scanner sc, Account account) {
@@ -136,10 +231,15 @@ public class AccountService implements IServiceMapGenerics<Account, String> {
     if (returnedAccountOptional.isPresent()) {
       Account tempAccount = returnedAccountOptional.get();
       if (tempAccount.getPassword().equals(password)) {
-        accountOptional = returnedAccountOptional;
+        if (tempAccount.isStatus()) {
+          accountOptional = returnedAccountOptional;
+        } else {
+          System.err.println("Tài khoản đã bị khóa!!!");
+        }
       } else {
         System.err.println("Mật khẩu không đúng!!!");
       }
+
     } else {
       System.err.println("Tên tài khoản không đúng!!!");
     }
