@@ -12,7 +12,7 @@ public class Account implements Serializable {
   private User userDetail;
   private boolean status = true;
   private Role role;
-  private BigDecimal totalCurrentMoney;
+  private BigDecimal totalCurrentMoney = new BigDecimal(0);
 
   public Account() {
   }
@@ -75,6 +75,7 @@ public class Account implements Serializable {
     return "Thông tin tài khoản{" +
             "Tên tài khoản='" + username + '\'' +
             ", Mật khẩu='" + password + '\'' +
+             ",Tổng số tiền trong ví= " + totalCurrentMoney +
             ", Trạng thái=" + (status ? "Đang hoạt động" : "Đã bị khóa") +
             userDetail +
             '}';
