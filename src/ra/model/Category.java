@@ -1,12 +1,24 @@
 package ra.model;
 
+import ra.services.CategoryService;
+
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Category implements Serializable {
-  private static int currentId = 0;
+  private static int currentId;
   private final int id;
   private String name;
   private boolean status = true;
+
+  static {
+    ArrayList<Category> categories = CategoryService.getCategories();
+    if (!categories.isEmpty()) {
+      Category lastCategory = categories.get(categories.size());
+      currentId = lastCategory.getId();
+    } else
+      currentId = 0;
+  }
 
   public Category() {
     id = currentId++;

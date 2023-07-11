@@ -47,10 +47,10 @@ public class AdminController {
             accountService.createAdminAccount(adminSC);
             break;
           case 2:
-            // Khóa mở account
             accountService.changeAccountStatus(adminSC);
             break;
           case 3:
+            // TODO: Làm quản lý danh mục
             return;
 
           default:
@@ -63,6 +63,7 @@ public class AdminController {
   }
 
   private void quanLyAccountMenu() {
+    // TODO: Làm thêm in danh sách tất cả các tài khoản
     System.out.println("==== QUẢN LÝ ACCOUNT ====");
     System.out.println("1. Tạo account quản lý");
     System.out.println("2. Khóa mở account");
@@ -70,6 +71,18 @@ public class AdminController {
     System.out.print("Nhập lựa chọn: ");
   }
 
+   private void quanLyDanhMuc() {
+
+   }
+
+   private void quanLyDanhMucMenu() {
+     System.out.println("==== QUẢN LÝ DANH MỤC ==== ");
+     System.out.println("1. Thêm danh mục");
+     System.out.println("2. In danh sách danh mục");
+     System.out.println("3. Sửa danh mục");
+     System.out.println("4. Xóa danh mục");
+     System.out.println("5. Thoát");
+   }
   private void displayMenu() {
     System.out.println("==== QUẢN LÝ ====");
     System.out.println("1.Quản lý account");

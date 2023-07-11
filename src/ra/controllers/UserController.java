@@ -2,12 +2,14 @@ package ra.controllers;
 
 import ra.run.FashionShop;
 import ra.services.AccountService;
+import ra.services.CategoryService;
 
 import java.util.Scanner;
 
 public class UserController {
   private static final Scanner userSC = FashionShop.sc;
   private static final AccountService accountService = new AccountService();
+  private static final CategoryService categoryService = new CategoryService();
 
   public boolean menu() {
     int luachon;
@@ -34,6 +36,7 @@ public class UserController {
       }
     }
   }
+
 
   private void displayMenu() {
     System.out.println("==== USER ====");
