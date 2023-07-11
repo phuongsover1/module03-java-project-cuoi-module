@@ -4,14 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f5fc06bd-9226-4bd9-a69d-5283c1b6a0fb" name="Changes" comment="hoàn thành thay đổi profile">
-      <change afterPath="$PROJECT_DIR$/src/ra/data/categories.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ra/services/CategoryService.java" afterDir="false" />
+    <list default="true" id="f5fc06bd-9226-4bd9-a69d-5283c1b6a0fb" name="Changes" comment="lỡ làm quản lý danh mục trên master">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ra/controllers/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ra/controllers/AdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ra/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ra/controllers/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ra/data/categories.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/ra/data/categories.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ra/model/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ra/model/Category.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ra/utility/Utility.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ra/utility/Utility.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ra/services/CategoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ra/services/CategoryService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,7 +44,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "new-feature",
     "last_opened_file_path": "/run/media/phuong/DATA/Frontend_Web_Development/rikkei/BaiTap_RikkeiAcademy/Module03-Java/project-cuoi-khoa",
     "settings.editor.selected.configurable": "editor.preferences.fonts.default"
   }
@@ -116,7 +114,15 @@
       <option name="project" value="LOCAL" />
       <updated>1689072322499</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="lỡ làm quản lý danh mục trên master">
+      <option name="closed" value="true" />
+      <created>1689096467043</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1689096467043</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -138,7 +144,8 @@
     <MESSAGE value="kiểm tra số điện thoại và email đã tồn tại chưa khi đăng kí" />
     <MESSAGE value="xong tạo account, set trạng thái account" />
     <MESSAGE value="hoàn thành thay đổi profile" />
-    <option name="LAST_COMMIT_MESSAGE" value="hoàn thành thay đổi profile" />
+    <MESSAGE value="lỡ làm quản lý danh mục trên master" />
+    <option name="LAST_COMMIT_MESSAGE" value="lỡ làm quản lý danh mục trên master" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

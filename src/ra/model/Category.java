@@ -6,22 +6,20 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Category implements Serializable {
-  private static int currentId;
   private final int id;
   private String name;
   private boolean status = true;
 
-  static {
+
+  public Category() {
+    int currentId;
     ArrayList<Category> categories = CategoryService.getCategories();
-    if (!categories.isEmpty()) {
-      Category lastCategory = categories.get(categories.size());
+    if (categories != null && !categories.isEmpty()) {
+      Category lastCategory = categories.get(categories.size() -1);
       currentId = lastCategory.getId();
     } else
       currentId = 0;
-  }
-
-  public Category() {
-    id = currentId++;
+    id = ++currentId;
   }
 
   public int getId() {
@@ -30,11 +28,9 @@ public class Category implements Serializable {
 
   @Override
   public String toString() {
-    return "Danh mục{" +
-            "id=" + id +
-            ", tên danh mục='" + name + '\'' +
-            ", trạng thái=" + (status ? " Đang hoạt động " : " Không hoạt động") +
-            '}';
+    return "ID: " + id + "\n" +
+            "Tên danh mục: " + name + "\n" +
+            "Trạng thái: " + (status ? "Đang hoạt động" : "Ngừng hoạt động");
   }
 
   public String getName() {
