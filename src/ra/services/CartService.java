@@ -33,11 +33,24 @@ public class CartService implements IServiceCollectionGenerics<CartItem, Integer
         if (productOptional.isPresent()) {
           Product foundProduct = productOptional.get();
 
+          // TODO: nhưng mình phải kiểm tra thêm là đã có sản phẩm này trong giỏ hàng này chưa. Nếu có thì cập nhật số lượng chứ không thêm mới
+          ArrayList<CartItem> cartItems = AuthController.currentAccount.getCartItems();
+          CartItem cartItem = null;
+          for (int i = 0; i < cartItems.size(); i++) {
+            if (cartItems.get(i).getProduct().getId() == idProduct) {
+              cartItem = cartItems.get(i);
+              break;
+            }
+          }
           // Nhập số lượng cần thêm
           int maxStock = foundProduct.getStock();
           int quantity;
           while (true) {
-            System.out.printf("Nhập số lượng mà bạn muốn thêm vào giỏ hàng (max = %d):  ", maxStock);
+            if (cartItem != null) {
+              System.out.printf("sản phẩm này đã có trong giỏ hàng. Nhập số lượng mới mà bạn muốn chỉnh sửa (current = %d), (max = %d):", cartItem.getQuantity(), maxStock);
+            } else {
+              System.out.printf("Nhập số lượng mà bạn muốn thêm vào giỏ hàng (max = %d):  ", maxStock);
+            }
             try {
               quantity = Integer.parseInt(sc.nextLine());
               if (quantity <= 0) {
@@ -48,17 +61,22 @@ public class CartService implements IServiceCollectionGenerics<CartItem, Integer
                 System.err.printf("Hiện tại trong kho không còn đủ hàng với số lượng mà bạn vừa nhập (max = %d). Hây nhập lại\n", maxStock);
                 continue;
               }
-              CartItem cartItem = new CartItem(AuthController.currentAccount);
-              cartItem.setProduct(foundProduct);
-              cartItem.setQuantity(quantity);
-              save(cartItem);
+              if (cartItem != null){
+                cartItem.setQuantity(quantity);
+                accountService.writeToFile();
+              } else {
+                cartItem = new CartItem(AuthController.currentAccount);
+                cartItem.setProduct(foundProduct);
+                cartItem.setQuantity(quantity);
+                save(cartItem);
+              }
               break;
             } catch (NumberFormatException ex) {
               System.err.println("Số lượng đã nhập không hợp lệ. Hãy nhập lại");
             }
           }
         } else {
-          System.err.print("Sản phẩm với id = %d không tồn tại trong danh sách sản phẩm\n");
+          System.err.printf("Sản phẩm với id = %d không tồn tại trong danh sách sản phẩm\n", idProduct);
         }
       } catch (NumberFormatException ex) {
         System.err.println("Id sản phẩm không hợp lệ");
@@ -183,6 +201,40 @@ public class CartService implements IServiceCollectionGenerics<CartItem, Integer
             }
           }
 
+        } else {
+          System.err.printf("Id %d trong giỏ hàng không tồn tại. Hãy nhập lại.\n", cartItemId);
+        }
+      } catch (NumberFormatException ex) {
+        System.err.println("Id mặt hàng không hợp lệ. Hãy nhập lại.");
+      }
+
+    }
+  }
+
+  public void deleteCartItem(Scanner sc) {
+    int cartItemId;
+    while (true) {
+      ArrayList<CartItem> cartItems = AuthController.currentAccount.getCartItems();
+      if (cartItems.isEmpty()) {
+        System.err.println("Giỏ hàng đang trống. Hãy thêm sản phẩm vào giỏ hàng trước");
+        return;
+      }
+      displayCartItem();
+      System.out.print("Nhập id của mặt hàng mà bạn muốn xóa khỏi giỏ hàng (Nhập '-1' nếu muốn thoát) : ");
+      try {
+        cartItemId = Integer.parseInt(sc.nextLine());
+        if (cartItemId == -1) {
+          return;
+        }
+        if (cartItemId < 0) {
+          System.err.println("Id mặt hàng không hợp lệ. Hãy nhập lại.");
+          continue;
+        }
+        //
+        Optional<CartItem> cartItemOptional = findById(cartItemId);
+        if (cartItemOptional.isPresent()) { // nếu thấy được mặt hàng khớp với id
+          delete(cartItemId);
+          System.out.println("Xóa thành công");
         } else {
           System.err.printf("Id %d trong giỏ hàng không tồn tại. Hãy nhập lại.\n", cartItemId);
         }

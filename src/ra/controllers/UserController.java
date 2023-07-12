@@ -69,6 +69,9 @@ public class UserController {
           case 3:
             cartService.changeQuantity(userSC);
             break;
+          case 4:
+            cartService.deleteCartItem(userSC);
+            break;
           case 6:
             return;
           default:
