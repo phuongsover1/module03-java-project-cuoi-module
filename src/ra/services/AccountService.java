@@ -13,11 +13,11 @@ import java.util.regex.Pattern;
 
 public class AccountService implements IServiceMapGenerics<Account, String> {
   private static final Map<String, Account> accountMap;
-  private static final IOMapService<Account, String> IOAccount = new IOMapService<>();
+  private static final IOMapService<Account, String> IOAccount = new IOMapService<>(Utility.ACCOUNT_FILE);
 
   static {
     Map<String, Account> accountMapFromFile;
-    accountMapFromFile = IOAccount.readFromFile(Utility.ACCOUNT_FILE);
+    accountMapFromFile = IOAccount.readFromFile();
     if (accountMapFromFile == null) {
       accountMapFromFile = new HashMap<>();
     }
@@ -25,19 +25,19 @@ public class AccountService implements IServiceMapGenerics<Account, String> {
   }
 
   private void writeToFile() {
-    IOAccount.writeToFile(Utility.ACCOUNT_FILE, accountMap);
+    IOAccount.writeToFile(accountMap);
   }
 
   @Override
   public void save(Account account) {
     accountMap.put(account.getUsername(), account);
-    IOAccount.writeToFile(Utility.ACCOUNT_FILE, accountMap);
+    IOAccount.writeToFile(accountMap);
   }
 
   @Override
   public void delete(String username) {
     accountMap.remove(username);
-    IOAccount.writeToFile(Utility.ACCOUNT_FILE, accountMap);
+    IOAccount.writeToFile(accountMap);
   }
 
   @Override
@@ -553,7 +553,7 @@ public class AccountService implements IServiceMapGenerics<Account, String> {
               if (luachon == 1) {
                 account.setStatus(false);
                 System.out.println("Khóa tài khoản thành công");
-                IOAccount.writeToFile(Utility.ACCOUNT_FILE, accountMap);
+                IOAccount.writeToFile(accountMap);
               }
               break;
             } catch (NumberFormatException ex) {
@@ -576,7 +576,7 @@ public class AccountService implements IServiceMapGenerics<Account, String> {
               if (luachon == 1) {
                 account.setStatus(true);
                 System.out.println("Mở khóa tài khoản thành công");
-                IOAccount.writeToFile(Utility.ACCOUNT_FILE, accountMap);
+                IOAccount.writeToFile(accountMap);
               }
               break;
             } catch (NumberFormatException ex) {

@@ -5,10 +5,14 @@ import java.util.Collection;
 import java.util.Map;
 
 public class IOMapService<T,I> {
+  private final File destination;
 
-  public Map<I,T> readFromFile(File file) {
+  public IOMapService(File destination) {
+    this.destination = destination;
+  }
+  public Map<I,T> readFromFile() {
     Map<I,T> map = null;
-    try(ObjectInputStream ois = new ObjectInputStream(new BufferedInputStream(new FileInputStream((file))))) {
+    try(ObjectInputStream ois = new ObjectInputStream(new BufferedInputStream(new FileInputStream((destination))))) {
         map = (Map<I, T>) ois.readObject();
     } catch (EOFException ex) {
 
@@ -18,8 +22,8 @@ public class IOMapService<T,I> {
     return map;
   }
 
-  public void writeToFile(File file, Map<I,T> map) {
-    try (ObjectOutputStream oos = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(file)))) {
+  public void writeToFile(Map<I,T> map) {
+    try (ObjectOutputStream oos = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(destination)))) {
       oos.writeObject(map);
     } catch (FileNotFoundException e) {
       System.err.println("Không tìm thấy file");

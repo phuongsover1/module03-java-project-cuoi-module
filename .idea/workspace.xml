@@ -4,12 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f5fc06bd-9226-4bd9-a69d-5283c1b6a0fb" name="Changes" comment="lỡ làm quản lý danh mục trên master">
+    <list default="true" id="f5fc06bd-9226-4bd9-a69d-5283c1b6a0fb" name="Changes" comment="dừng lại từ bữa  trước">
+      <change afterPath="$PROJECT_DIR$/src/ra/data/products.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ra/services/ProductService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ra/controllers/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ra/controllers/AdminController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ra/data/categories.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/ra/data/categories.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ra/model/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ra/model/Category.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ra/model/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ra/model/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ra/services/AccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ra/services/AccountService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ra/services/CategoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ra/services/CategoryService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ra/services/IOCollectionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ra/services/IOCollectionService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ra/services/IOMapService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ra/services/IOMapService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ra/utility/Utility.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ra/utility/Utility.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,22 +40,45 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectId" id="2SF8gL9Ztg7bQIsBeOk4I114LdT" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "new-feature",
-    "last_opened_file_path": "/run/media/phuong/DATA/Frontend_Web_Development/rikkei/BaiTap_RikkeiAcademy/Module03-Java/project-cuoi-khoa",
-    "settings.editor.selected.configurable": "editor.preferences.fonts.default"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;new-feature&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/run/media/phuong/DATA/Frontend_Web_Development/rikkei/BaiTap_RikkeiAcademy/Module03-Java/project-cuoi-khoa&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.fonts.default&quot;
   }
-}]]></component>
+}</component>
+  <component name="RunManager">
+    <configuration name="FashionShop" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ra.run.FashionShop" />
+      <module name="project-cuoi-khoa" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ra.run.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.FashionShop" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -122,7 +152,15 @@
       <option name="project" value="LOCAL" />
       <updated>1689096467043</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="dừng lại từ bữa  trước">
+      <option name="closed" value="true" />
+      <created>1689101482679</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1689101482679</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -145,7 +183,8 @@
     <MESSAGE value="xong tạo account, set trạng thái account" />
     <MESSAGE value="hoàn thành thay đổi profile" />
     <MESSAGE value="lỡ làm quản lý danh mục trên master" />
-    <option name="LAST_COMMIT_MESSAGE" value="lỡ làm quản lý danh mục trên master" />
+    <MESSAGE value="dừng lại từ bữa  trước" />
+    <option name="LAST_COMMIT_MESSAGE" value="dừng lại từ bữa  trước" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

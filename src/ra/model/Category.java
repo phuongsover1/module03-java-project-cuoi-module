@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Category implements Serializable {
-  private final int id;
+  private int id;
   private String name;
   private boolean status = true;
 
@@ -17,9 +17,15 @@ public class Category implements Serializable {
     if (categories != null && !categories.isEmpty()) {
       Category lastCategory = categories.get(categories.size() -1);
       currentId = lastCategory.getId();
-    } else
-      currentId = 0;
-    id = ++currentId;
+      id = ++currentId;
+    } else {
+      id = 0;
+    }
+
+  }
+
+  public void setId(int id) {
+    this.id = id;
   }
 
   public int getId() {

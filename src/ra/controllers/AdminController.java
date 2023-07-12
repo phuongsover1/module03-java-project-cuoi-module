@@ -4,6 +4,7 @@ import ra.model.Account;
 import ra.run.FashionShop;
 import ra.services.AccountService;
 import ra.services.CategoryService;
+import ra.services.ProductService;
 
 import java.util.Scanner;
 
@@ -11,6 +12,7 @@ public class AdminController {
   private static final Scanner adminSC = FashionShop.sc;
   private static final AccountService accountService = new AccountService();
   private static final CategoryService categoryService = new CategoryService();
+  private static final ProductService productService = new ProductService();
 
   public boolean menu() {
     int luachon;
@@ -24,7 +26,7 @@ public class AdminController {
             quanLyAccount();
             break;
           case 2:
-
+            quanLySanPham();
             break;
           case 3:
             quanLyDanhMuc();
@@ -45,6 +47,48 @@ public class AdminController {
       }
 
     }
+  }
+
+  private void quanLySanPham() {
+    int luachon;
+    while (true) {
+      try {
+        quanLySanPhamMenu();
+        luachon = Integer.parseInt(adminSC.nextLine());
+        switch (luachon) {
+          case 1:
+            productService.createProduct(adminSC);
+            break;
+
+          case 2:
+            productService.displayProducts();
+            break;
+
+          case 3:
+            productService.updateProduct(adminSC);
+            break;
+          case 4:
+            productService.deleteProduct(adminSC);
+            break;
+          case 5:
+            return;
+          default:
+            System.err.println("Lựa chọn không hợp lệ. Hãy chọn lại");
+        }
+      } catch (NumberFormatException ex) {
+        System.err.println("Lựa chọn không hợp lệ. Hãy chọn lại");
+      }
+    }
+  }
+
+  private void quanLySanPhamMenu() {
+    System.out.println("==== QUẢN LÝ SẢN PHẨM ==== ");
+    System.out.println("1. Thêm sản phẩm");
+    System.out.println("2. In danh sách sản phẩm");
+    System.out.println("3. Sửa sản phẩm");
+    System.out.println("4. Xóa sản phẩm");
+    System.out.println("5. Thoát");
+    System.out.print("Nhập lựa chọn: ");
   }
 
   private void quanLyAccount() {
@@ -97,11 +141,10 @@ public class AdminController {
             break;
 
           case 3:
-            categoryService.updateCategory();
+            categoryService.updateCategory(adminSC);
             break;
-
           case 4:
-
+            categoryService.deleteCategory(adminSC);
             break;
           case 5:
             return;
