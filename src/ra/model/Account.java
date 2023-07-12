@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class Account implements Serializable {
+  private final ArrayList<Bill> bills = new ArrayList<>();
   private String username;
   private String password;
   private User userDetail;
@@ -15,14 +16,17 @@ public class Account implements Serializable {
   private Role role;
   private BigDecimal totalCurrentMoney = new BigDecimal(0);
   private ArrayList<CartItem> cartItems = new ArrayList<>();
-
-
   public Account() {
   }
 
   public Account(String username, String password) {
     this.username = username;
     this.password = password;
+  }
+
+  public ArrayList<Bill> getBills() {
+
+    return bills;
   }
 
   public BigDecimal getTotalCurrentMoney() {
@@ -78,7 +82,7 @@ public class Account implements Serializable {
     return "Thông tin tài khoản{" +
             "Tên tài khoản='" + username + '\'' +
             ", Mật khẩu='" + password + '\'' +
-             ",Tổng số tiền trong ví= " + totalCurrentMoney +
+            ",Tổng số tiền trong ví= " + totalCurrentMoney +
             ", Trạng thái=" + (status ? "Đang hoạt động" : "Đã bị khóa") +
             userDetail +
             '}';
@@ -99,5 +103,9 @@ public class Account implements Serializable {
 
   public ArrayList<CartItem> getCartItems() {
     return cartItems;
+  }
+
+  public void setCartItems(ArrayList<CartItem> cartItems) {
+    this.cartItems = cartItems;
   }
 }

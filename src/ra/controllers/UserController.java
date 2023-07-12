@@ -2,10 +2,7 @@ package ra.controllers;
 
 import ra.model.Account;
 import ra.run.FashionShop;
-import ra.services.AccountService;
-import ra.services.CartService;
-import ra.services.CategoryService;
-import ra.services.ProductService;
+import ra.services.*;
 
 import java.util.Scanner;
 
@@ -15,6 +12,7 @@ public class UserController {
   private static final CategoryService categoryService = new CategoryService();
   private static final ProductService productService = new ProductService();
   private static final CartService cartService = new CartService();
+  private static final BillService billService = new BillService();
 
 
   private void logout() {
@@ -41,7 +39,9 @@ public class UserController {
           case 3:
             quanLyGioHang();
             break;
-
+          case 4:
+            quanLyHoaDon();
+            break;
           case 5:
             // TODO: Muốn thoát ra màn hình đăng nhập thì trả về false
             logout();
@@ -51,6 +51,45 @@ public class UserController {
         System.err.println("Lựa chọn không hợp lê.");
       }
     }
+  }
+
+  private void quanLyHoaDon() {
+    int luachon;
+    while (true) {
+      quanLyHoaDonMenu();
+      try {
+        luachon = Integer.parseInt(userSC.nextLine());
+        switch (luachon) {
+          case 1:
+            billService.showProcessingBills(AuthController.currentAccount, userSC);
+            break;
+          case 2:
+            billService.showSuccessfulBills(AuthController.currentAccount, userSC);
+            break;
+          case 3:
+            billService.showCanceledBills(AuthController.currentAccount, userSC);
+            break;
+          case 4:
+            break;
+          case 5:
+            return;
+          default:
+            System.err.println("Lựa chọn không hợp lệ. Hãy nhập lại");
+        }
+      } catch (NumberFormatException ex) {
+        System.err.println("Lựa chọn không hợp lệ. Hãy nhập lại");
+      }
+    }
+  }
+
+  private void quanLyHoaDonMenu() {
+    System.out.println("==== QUẢN LÝ HÓA ĐƠN ==== ");
+    System.out.println("1. Danh sách hóa đơn đang được xử lý");
+    System.out.println("2. Danh sách hóa đơn đã thanh toán");
+    System.out.println("3. Danh sách hóa đơn đã bị hủy");
+    System.out.println("4. Hủy hóa đơn (nhớ cộng lại tiền đã mất cho hóa đơn đó): ");
+    System.out.println("5. Thoát");
+    System.out.print("Nhập lựa chọn: ");
   }
 
   private void quanLyGioHang() {
@@ -71,6 +110,10 @@ public class UserController {
             break;
           case 4:
             cartService.deleteCartItem(userSC);
+            break;
+          case 5:
+            // TODO: THANH TOÁN GIỎ HÀNG
+            billService.createBill(AuthController.currentAccount);
             break;
           case 6:
             return;

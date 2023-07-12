@@ -33,7 +33,7 @@ public class CartService implements IServiceCollectionGenerics<CartItem, Integer
         if (productOptional.isPresent()) {
           Product foundProduct = productOptional.get();
 
-          // TODO: nhưng mình phải kiểm tra thêm là đã có sản phẩm này trong giỏ hàng này chưa. Nếu có thì cập nhật số lượng chứ không thêm mới
+          //  nhưng mình phải kiểm tra thêm là đã có sản phẩm này trong giỏ hàng này chưa. Nếu có thì cập nhật số lượng chứ không thêm mới
           ArrayList<CartItem> cartItems = AuthController.currentAccount.getCartItems();
           CartItem cartItem = null;
           for (int i = 0; i < cartItems.size(); i++) {
