@@ -24,7 +24,7 @@ public class AccountService implements IServiceMapGenerics<Account, String> {
     accountMap = accountMapFromFile;
   }
 
-  private void writeToFile() {
+  public void writeToFile() {
     IOAccount.writeToFile(accountMap);
   }
 

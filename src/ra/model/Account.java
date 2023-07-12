@@ -4,6 +4,7 @@ import ra.enums.Role;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class Account implements Serializable {
@@ -13,6 +14,8 @@ public class Account implements Serializable {
   private boolean status = true;
   private Role role;
   private BigDecimal totalCurrentMoney = new BigDecimal(0);
+  private ArrayList<CartItem> cartItems = new ArrayList<>();
+
 
   public Account() {
   }
@@ -92,5 +95,9 @@ public class Account implements Serializable {
   @Override
   public int hashCode() {
     return Objects.hash(username);
+  }
+
+  public ArrayList<CartItem> getCartItems() {
+    return cartItems;
   }
 }

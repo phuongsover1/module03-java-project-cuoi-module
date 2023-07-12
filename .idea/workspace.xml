@@ -4,19 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f5fc06bd-9226-4bd9-a69d-5283c1b6a0fb" name="Changes" comment="dừng lại từ bữa  trước">
-      <change afterPath="$PROJECT_DIR$/src/ra/data/products.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ra/services/ProductService.java" afterDir="false" />
+    <list default="true" id="f5fc06bd-9226-4bd9-a69d-5283c1b6a0fb" name="Changes" comment="xong crud danh mục ,sản phẩm">
+      <change afterPath="$PROJECT_DIR$/src/ra/model/Bill.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ra/model/CartItem.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ra/services/CartService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ra/controllers/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ra/controllers/AdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ra/data/categories.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/ra/data/categories.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ra/model/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ra/model/Category.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ra/model/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ra/model/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ra/controllers/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ra/controllers/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ra/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ra/controllers/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ra/data/accounts.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/ra/data/accounts.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ra/data/products.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/ra/data/products.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ra/model/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ra/model/Account.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ra/run/FashionShop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ra/run/FashionShop.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ra/services/AccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ra/services/AccountService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ra/services/CategoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ra/services/CategoryService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ra/services/IOCollectionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ra/services/IOCollectionService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ra/services/IOMapService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ra/services/IOMapService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ra/utility/Utility.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ra/utility/Utility.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ra/services/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ra/services/ProductService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -160,7 +160,15 @@
       <option name="project" value="LOCAL" />
       <updated>1689101482679</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="xong crud danh mục ,sản phẩm">
+      <option name="closed" value="true" />
+      <created>1689152991209</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1689152991209</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -184,7 +192,8 @@
     <MESSAGE value="hoàn thành thay đổi profile" />
     <MESSAGE value="lỡ làm quản lý danh mục trên master" />
     <MESSAGE value="dừng lại từ bữa  trước" />
-    <option name="LAST_COMMIT_MESSAGE" value="dừng lại từ bữa  trước" />
+    <MESSAGE value="xong crud danh mục ,sản phẩm" />
+    <option name="LAST_COMMIT_MESSAGE" value="xong crud danh mục ,sản phẩm" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

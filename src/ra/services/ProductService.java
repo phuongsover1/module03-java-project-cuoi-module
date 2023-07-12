@@ -28,6 +28,7 @@ public class ProductService implements IServiceCollectionGenerics<Product, Integ
   public static ArrayList<Product> getProducts() {
     return products;
   }
+
   @Override
   public void save(Product entity) {
     products.add(entity);
@@ -39,9 +40,9 @@ public class ProductService implements IServiceCollectionGenerics<Product, Integ
     try {
       products.remove(id.intValue());
 
-      for (int i = id; i < products.size(); i++){
+      for (int i = id; i < products.size(); i++) {
         Product product = products.get(i);
-        product.setId(product.getId() - 1 );
+        product.setId(product.getId() - 1);
       }
       IOProduct.writeToFile(products);
     } catch (IndexOutOfBoundsException ex) {
@@ -96,7 +97,7 @@ public class ProductService implements IServiceCollectionGenerics<Product, Integ
 
   private void inputPrice(Scanner sc, Product product) {
     double price;
-    while(true) {
+    while (true) {
       System.out.print("Hãy nhập giá của sản phẩm: ");
       try {
         price = Double.parseDouble(sc.nextLine());
@@ -112,8 +113,8 @@ public class ProductService implements IServiceCollectionGenerics<Product, Integ
     }
   }
 
-  private void inputCategory(Scanner sc, Product product)  {
-    if(categoryService.findAll().isEmpty()) {
+  private void inputCategory(Scanner sc, Product product) {
+    if (categoryService.findAll().isEmpty()) {
       System.err.println("Danh sách danh mục đang trống. Xin hãy thêm danh mục trước");
       return;
     }
@@ -135,9 +136,10 @@ public class ProductService implements IServiceCollectionGenerics<Product, Integ
       }
     }
   }
+
   private void inputStock(Scanner sc, Product product) {
     int stock;
-    while(true) {
+    while (true) {
       System.out.print("Nhập số lượng tồn: ");
       try {
         stock = Integer.parseInt(sc.nextLine());
@@ -159,7 +161,7 @@ public class ProductService implements IServiceCollectionGenerics<Product, Integ
       return;
     }
     for (int i = 0; i < products.size(); i++) {
-      System.out.printf("==== Sản phẩm thứ %d \n ====", i);
+      System.out.printf("==== Sản phẩm thứ %d ==== \n", i);
       System.out.println(products.get(i));
     }
   }
@@ -294,5 +296,82 @@ public class ProductService implements IServiceCollectionGenerics<Product, Integ
         System.err.println("Id sản phẩm không hợp lệ. Hãy nhập lại.");
       }
     }
+  }
+
+  public void findProduct(Scanner sc) {
+    int luachon;
+    while (true) {
+      findProductMenu();
+      try {
+        luachon = Integer.parseInt(sc.nextLine());
+
+        switch (luachon) {
+          case 1:
+            findProductByName(sc);
+            return;
+          case 2:
+            findProductByCategoryName(sc);
+            return;
+          case 3:
+            return;
+          default:
+            System.err.println("Lựa chọn không hợp lệ. Hãy nhập lại");
+        }
+      } catch (NumberFormatException ex) {
+        System.err.println("Lựa chọn không hợp lệ. Hãy nhập lại");
+      }
+    }
+  }
+
+  private void findProductByName(Scanner sc) {
+    String productName;
+    while (true) {
+      System.out.print("Nhập tên hoặc một phần của sản phẩm mà bạn muốn tìm kiếm: ");
+      productName = sc.nextLine().trim();
+      if (productName.equals("")) {
+        System.err.println("Tên sản phẩm không được để trống được để trống");
+        continue;
+      }
+      System.out.println("==== DANH SÁCH SẢN PHẨM TÌM THẤY ====");
+      int i = 0;
+      for (Product product :
+              products) {
+        if (product.getName().toLowerCase().contains(productName.toLowerCase())) {
+          System.out.printf(" ==== Sản phẩm thứ %d ==== \n", ++i);
+          System.out.println(product);
+        }
+      }
+      break;
+    }
+  }
+
+  private void findProductByCategoryName(Scanner sc) {
+    String categoryName;
+    while (true) {
+      System.out.print("Nhập tên hoặc một phần của danh mục mà bạn muốn tìm kiếm: ");
+      categoryName = sc.nextLine().trim();
+      if (categoryName.equals("")) {
+        System.err.println("Tên danh mục để trống được để trống");
+        continue;
+      }
+      System.out.println("==== DANH SÁCH SẢN PHẨM TÌM THẤY ====");
+      int i = 0;
+      for (Product product :
+              products) {
+        if (product.getCategory().getName().toLowerCase().contains(categoryName.toLowerCase())) {
+          System.out.printf(" ==== Sản phẩm thứ %d ==== \n", ++i);
+          System.out.println(product);
+        }
+      }
+      break;
+    }
+  }
+
+  private void findProductMenu() {
+    System.out.println("==== TÌM KIẾM SẢN PHẨM ==== ");
+    System.out.println("1.Theo tên");
+    System.out.println("2.Theo tên danh mục");
+    System.out.println("3.Thoát");
+    System.out.print("Nhập lựa chọn: ");
   }
 }
