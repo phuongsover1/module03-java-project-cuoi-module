@@ -7,9 +7,9 @@
     <list default="true" id="f5fc06bd-9226-4bd9-a69d-5283c1b6a0fb" name="Changes" comment="xong quản lý hóa đơn, còn mỗi chức năng hủy đơn đang được xử lý, và còn chức năng duyệt đơn của admin">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ra/controllers/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ra/controllers/AdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ra/model/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ra/model/Account.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ra/model/Bill.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ra/model/Bill.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ra/services/BillService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ra/services/BillService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ra/data/accounts.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/ra/data/accounts.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ra/data/products.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/ra/data/products.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ra/services/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ra/services/ProductService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,16 +42,16 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;new-feature&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/run/media/phuong/DATA/Frontend_Web_Development/rikkei/BaiTap_RikkeiAcademy/Module03-Java/project-cuoi-khoa&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;settings.sync&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "/run/media/phuong/DATA/Frontend_Web_Development/rikkei/BaiTap_RikkeiAcademy/Module03-Java/project-cuoi-khoa",
+    "settings.editor.selected.configurable": "settings.sync"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="FashionShop" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ra.run.FashionShop" />

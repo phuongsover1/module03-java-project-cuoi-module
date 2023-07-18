@@ -29,6 +29,10 @@ public class ProductService implements IServiceCollectionGenerics<Product, Integ
     return products;
   }
 
+  public void writeToFile() {
+    IOProduct.writeToFile(products);
+  }
+
   @Override
   public void save(Product entity) {
     products.add(entity);
@@ -54,7 +58,7 @@ public class ProductService implements IServiceCollectionGenerics<Product, Integ
   public Optional<Product> findById(Integer id) {
     Optional<Product> productOptional;
     try {
-      Product product = products.get(id);
+      Product product = products.get(id.intValue());
       productOptional = Optional.of(product);
     } catch (IndexOutOfBoundsException ex) {
       productOptional = Optional.empty();

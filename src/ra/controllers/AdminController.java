@@ -3,6 +3,8 @@ package ra.controllers;
 import ra.enums.BillStatus;
 import ra.model.Account;
 import ra.model.Bill;
+import ra.model.CartItem;
+import ra.model.Product;
 import ra.run.FashionShop;
 import ra.services.AccountService;
 import ra.services.BillService;
@@ -129,7 +131,14 @@ public class AdminController {
                   chosenBill.setBillStatus(BillStatus.DA_THANH_TOAN);
                   chosenBill.setUsername(AuthController.currentAccount.getUsername());
                   AuthController.currentAccount.getBills().add(chosenBill);
+                  // TODO: lặp qua product trừ số lượng tồn
+                  for (CartItem cartItem :
+                          chosenBill.getCartItems()) {
+                    Product product = productService.findById(cartItem.getProduct().getId()).get();
+                    product.setStock(product.getStock() - cartItem.getQuantity());
+                  }
                   accountService.writeToFile();
+                  productService.writeToFile();
                   isExit = true;
                   break;
                 case 2:
