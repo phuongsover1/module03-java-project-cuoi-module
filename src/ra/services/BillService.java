@@ -7,10 +7,22 @@ import ra.model.CartItem;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class BillService {
   private static final AccountService accountService = new AccountService();
+
+  public List<Bill> getAllProcessingBills() {
+    Map<String, Account> accountMap = accountService.findAll();
+    List<Bill> processingBills = new ArrayList<>();
+    accountMap.values().parallelStream().forEach(account -> account.getBills().forEach(bill -> {
+      if (bill.getBillStatus() == BillStatus.DANG_XU_LY)
+        processingBills.add(bill);
+    }));
+    return processingBills;
+  }
 
   public void createBill(Account account) {
     if (account.getCartItems().isEmpty()) {
@@ -83,6 +95,44 @@ public class BillService {
     }
   }
 
+  public void showAdminProcessBills(Account account, Scanner sc) {
+    ArrayList<Bill> bills = account.getBills();
+    if (bills.isEmpty()) {
+      System.err.println("Danh sách hóa đơn đang trống");
+      return;
+    }
+    int i = 0;
+    System.out.println("==== DANH SÁCH HÓA ĐƠN ĐÃ XỬ LÝ CỦA TÀI KHOẢN NÀY ==== ");
+    for (Bill bill :
+            bills) {
+      System.out.printf("==== HÓA ĐƠN THỨ %d ====\n", ++i);
+      System.out.println(bill);
+    }
+    int luachon;
+    while (true) {
+      System.out.print("==== BẠN CÓ MUỐN XEM CHI TIẾT HÓA ĐƠN ĐÃ THANH TOÁN NÀO KHÔNG ====\n");
+      System.out.println("1. Có");
+      System.out.println("2. Không");
+      System.out.print("Nhập lựa chọn: ");
+      try {
+        luachon = Integer.parseInt(sc.nextLine());
+        switch (luachon) {
+          case 1:
+            chooseBillToDisplayDetail(sc, bills);
+            break;
+          case 2:
+            return;
+          default:
+            System.err.println("Lựa chọn không hợp lệ. Hãy nhập lại");
+
+        }
+      } catch (NumberFormatException ex) {
+        System.err.println("Lựa chọn không hợp lệ. Hãy nhập lại");
+      }
+
+    }
+  }
+
   public void showSuccessfulBills(Account account, Scanner sc) {
     ArrayList<Bill> bills = account.getBills();
     if (bills.isEmpty()) {
@@ -125,7 +175,7 @@ public class BillService {
     }
   }
 
-  private void displayBills(ArrayList<Bill> bills) {
+  public void displayBills(ArrayList<Bill> bills) {
     for (int i = 0; i < bills.size(); i++) {
       System.out.printf("==== HÓA ĐƠN THỨ %d ====\n", i + 1);
       System.out.println(bills.get(i));
@@ -133,12 +183,14 @@ public class BillService {
 
   }
 
-  private void displayBillDetail(Bill bill) {
+  public void displayBillDetail(Bill bill) {
     ArrayList<CartItem> cartItems = bill.getCartItems();
     for (int i = 0; i < cartItems.size(); i++) {
       System.out.printf("==== SẢN PHẨM THỨ %d ==== \n", i + 1);
       System.out.println(cartItems.get(i));
     }
+    System.out.println("Trạng thái bill: " + bill.getBillStatus().name());
+    System.out.println("Tổng tiền của bill: " + bill.getTotalMoney());
   }
 
   private void chooseBillToDisplayDetail(Scanner sc, ArrayList<Bill> bills) {
@@ -231,24 +283,24 @@ public class BillService {
         processingBills.add(bill);
       }
     }
-    if(processingBills.isEmpty()){
+    if (processingBills.isEmpty()) {
       System.err.println("Hiện tại không có hóa đơn nào đang chờ được xử lý để mà hủy.");
       return;
     }
     int idBill;
-    while(true) {
+    while (true) {
       displayBills(processingBills);
       System.out.print("Hãy nhập id bill mà bạn muốn hủy. (Nhập '-1' nếu muốn thoát): ");
       try {
         idBill = Integer.parseInt(sc.nextLine());
-        if (idBill == -1){
+        if (idBill == -1) {
           return;
         }
         boolean isExist = false;
-        for (Bill bill:
-             processingBills) {
+        for (Bill bill :
+                processingBills) {
           if (bill.getId() == idBill) {
-            isExist =true;
+            isExist = true;
             bill.setBillStatus(BillStatus.DA_HUY);
             // TODO: Cộng tiền lại vào tài khoản
             BigDecimal totalMoney = new BigDecimal(0);
@@ -266,7 +318,7 @@ public class BillService {
         if (!isExist) {
           System.err.println("Id bill bạn nhập vào không tồn tại. Hãy nhập lại");
         }
-      }catch (NumberFormatException ex) {
+      } catch (NumberFormatException ex) {
         System.err.println("Id của bill không hợp lệ. Hãy nhập lại.");
       }
     }

@@ -6,8 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="f5fc06bd-9226-4bd9-a69d-5283c1b6a0fb" name="Changes" comment="xong quản lý hóa đơn, còn mỗi chức năng hủy đơn đang được xử lý, và còn chức năng duyệt đơn của admin">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ra/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ra/controllers/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ra/data/accounts.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/ra/data/accounts.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ra/controllers/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ra/controllers/AdminController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ra/model/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ra/model/Account.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ra/model/Bill.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ra/model/Bill.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ra/services/BillService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ra/services/BillService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -27,7 +28,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="new-feature" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -41,16 +42,16 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "new-feature",
-    "last_opened_file_path": "/run/media/phuong/DATA/Frontend_Web_Development/rikkei/BaiTap_RikkeiAcademy/Module03-Java/project-cuoi-khoa",
-    "settings.editor.selected.configurable": "settings.sync"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;new-feature&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/run/media/phuong/DATA/Frontend_Web_Development/rikkei/BaiTap_RikkeiAcademy/Module03-Java/project-cuoi-khoa&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;settings.sync&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="FashionShop" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ra.run.FashionShop" />
@@ -67,6 +68,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.FashionShop" />
         <item itemvalue="Application.FashionShop" />
         <item itemvalue="Application.FashionShop" />
       </list>
@@ -177,7 +179,15 @@
       <option name="project" value="LOCAL" />
       <updated>1689184660150</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="xong hủy đơn, nạp tiền">
+      <option name="closed" value="true" />
+      <created>1689693472313</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1689693472313</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -204,7 +214,8 @@
     <MESSAGE value="xong crud danh mục ,sản phẩm" />
     <MESSAGE value="xong thêm vào giỏ hàng, sửa số lượng trong giỏ hàng" />
     <MESSAGE value="xong quản lý hóa đơn, còn mỗi chức năng hủy đơn đang được xử lý, và còn chức năng duyệt đơn của admin" />
-    <option name="LAST_COMMIT_MESSAGE" value="xong quản lý hóa đơn, còn mỗi chức năng hủy đơn đang được xử lý, và còn chức năng duyệt đơn của admin" />
+    <MESSAGE value="xong hủy đơn, nạp tiền" />
+    <option name="LAST_COMMIT_MESSAGE" value="xong hủy đơn, nạp tiền" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

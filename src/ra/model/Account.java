@@ -24,6 +24,7 @@ public class Account implements Serializable {
     this.password = password;
   }
 
+
   public ArrayList<Bill> getBills() {
 
     return bills;

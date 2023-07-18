@@ -1,11 +1,16 @@
 package ra.controllers;
 
+import ra.enums.BillStatus;
 import ra.model.Account;
+import ra.model.Bill;
 import ra.run.FashionShop;
 import ra.services.AccountService;
+import ra.services.BillService;
 import ra.services.CategoryService;
 import ra.services.ProductService;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class AdminController {
@@ -13,6 +18,8 @@ public class AdminController {
   private static final AccountService accountService = new AccountService();
   private static final CategoryService categoryService = new CategoryService();
   private static final ProductService productService = new ProductService();
+  private static final BillService billService = new BillService();
+
 
   public boolean menu() {
     int luachon;
@@ -32,7 +39,7 @@ public class AdminController {
             quanLyDanhMuc();
             break;
           case 4:
-
+            quanLyHoaDon();
             break;
 
           case 5:
@@ -47,6 +54,109 @@ public class AdminController {
       }
 
     }
+  }
+
+  private void quanLyHoaDon() {
+    int luachon;
+    while(true) {
+      quanLyHoaDonMenu();
+      try {
+        luachon = Integer.parseInt(adminSC.nextLine());
+        switch (luachon) {
+          case 1:
+            handleProcessingBill((ArrayList<Bill>) billService.getAllProcessingBills());
+            break;
+
+          case 2:
+            showAdminProcessBills(AuthController.currentAccount);
+            break;
+
+          case 3:
+            return;
+          default:
+            System.err.println("Lựa chọn không hợp lệ. Hãy nhập lại");
+        }
+      } catch (NumberFormatException ex) {
+        System.err.println("Lựa chọn không hợp lệ. Xin vui lòng nhập lại");
+      }
+    }
+  }
+
+  private void showAdminProcessBills(Account currentAccount) {
+    billService.showAdminProcessBills(currentAccount, adminSC);
+  }
+
+  private void handleProcessingBill(ArrayList<Bill> allProcessingBills) {
+    if(allProcessingBills.isEmpty()){
+      System.err.println("Hiện tại không có hóa đơn nào đang chờ được xử lý");
+      return;
+    }
+    int idProcessingBill;
+    while(true) {
+      try{
+        billService.displayBills( allProcessingBills);
+        System.out.print("Nhập id bill bạn muốn xử lý. (Nhập '-1' để thoát): ");
+        idProcessingBill = Integer.parseInt(adminSC.nextLine());
+        if (idProcessingBill == -1) {
+          return;
+        }
+        Bill chosenBill = null;
+        for (Bill bill:
+            allProcessingBills ) {
+          if (bill.getId() == idProcessingBill) {
+             chosenBill = bill;
+             break;
+          }
+        }
+        if (chosenBill == null){
+          System.err.println("Id bill bạn vừa nhập không tồn tại. Xin hãy nhập lại");
+        }
+
+        if (chosenBill != null) {
+          billService.displayBillDetail(chosenBill);
+          int luachon;
+          boolean isExit = false;
+          while(!isExit) {
+            System.out.println("Bạn có muốn xác nhận thanh toán cho hóa đơn: ");
+            System.out.println("1. Có");
+            System.out.println("2. Không ");
+            System.out.print("Nhập lựa chọn: ");
+            try {
+              luachon = Integer.parseInt(adminSC.nextLine());
+
+              switch (luachon) {
+                case 1:
+                  chosenBill.setBillStatus(BillStatus.DA_THANH_TOAN);
+                  chosenBill.setUsername(AuthController.currentAccount.getUsername());
+                  AuthController.currentAccount.getBills().add(chosenBill);
+                  accountService.writeToFile();
+                  isExit = true;
+                  break;
+                case 2:
+                  isExit = true;
+                  break;
+                default:
+                  System.err.println("Lựa chọn không hợp lệ. Hãy nhập lại");
+              }
+            }catch (NumberFormatException ex) {
+              System.err.println("Lựa chọn không hợp lệ, hãy nhập lại.");
+            }
+          }
+        }
+
+      }catch (NumberFormatException ex) {
+        System.err.println("Id bill bạn nhập không hợp lệ. Xin hãy nhập lại");
+      }
+    }
+  }
+
+  private void quanLyHoaDonMenu() {
+    System.out.println("==== QUẢN LÝ HÓA ĐƠN ====");
+    System.out.println("1. Duyệt hóa đơn đang xử lý");
+    System.out.println("2. Xem lại hóa đơn đã duyệt");
+    System.out.println("3. Thoát");
+    System.out.print("Nhập lựa chọn: ");
+
   }
 
   private void quanLySanPham() {

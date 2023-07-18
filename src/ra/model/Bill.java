@@ -7,11 +7,21 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 
 public class Bill implements Serializable {
+  private static final long serialVersionUID = -3836710020998731967L;
   private final int id;
   private BillStatus billStatus = BillStatus.DANG_XU_LY;
   private BigDecimal totalMoney;
   private ArrayList<CartItem> cartItems;
   private int staffId;
+  private String username;
+
+  public String getUsername() {
+    return username;
+  }
+
+  public void setUsername(String username) {
+    this.username = username;
+  }
 
   public Bill(Account account) {
     ArrayList<Bill> bills = account.getBills();
