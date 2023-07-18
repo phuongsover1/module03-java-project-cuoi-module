@@ -4,6 +4,7 @@ import ra.model.Account;
 import ra.run.FashionShop;
 import ra.services.*;
 
+import java.math.BigDecimal;
 import java.util.Scanner;
 
 public class UserController {
@@ -25,7 +26,7 @@ public class UserController {
       try {
         displayMenu();
         luachon = Integer.parseInt(userSC.nextLine());
-        if (luachon < 1 || luachon > 5) {
+        if (luachon < 1 || luachon > 6) {
           System.err.println("Lựa chọn không hợp lê");
           continue;
         }
@@ -43,12 +44,37 @@ public class UserController {
             quanLyHoaDon();
             break;
           case 5:
+            napTienTaiKhoan(userSC, AuthController.currentAccount);
+            break;
+          case 6:
             // TODO: Muốn thoát ra màn hình đăng nhập thì trả về false
             logout();
             return false;
         }
       } catch (NumberFormatException ex) {
         System.err.println("Lựa chọn không hợp lê.");
+      }
+    }
+  }
+
+  private void napTienTaiKhoan(Scanner scanner, Account currentAccount)  {
+    System.out.println("Số tiền hiện tại của tại khoản: " + currentAccount.getTotalCurrentMoney());
+    String money;
+    while(true) {
+      try {
+        System.out.print("Hãy nhập số tiền cần nạp (Nhập '-1' đẻ thoát): ");
+        money =  scanner.nextLine();
+        if (money.equals("-1"))
+          return;
+        double moneyDouble = Double.parseDouble(money);
+
+        BigDecimal moneyDecimal = new BigDecimal(money);
+        currentAccount.setTotalCurrentMoney(currentAccount.getTotalCurrentMoney().add(moneyDecimal));
+        System.out.println("==== Đã nạp thành công. Số tiền mới hiện tại: " + currentAccount.getTotalCurrentMoney());
+        accountService.writeToFile();
+        break;
+      } catch (NumberFormatException ex) {
+        System.err.println("Số tiền bạn nhập không hợp lệ. Hãy nhập lại");
       }
     }
   }
@@ -70,6 +96,8 @@ public class UserController {
             billService.showCanceledBills(AuthController.currentAccount, userSC);
             break;
           case 4:
+            // TODO: Hủy đơn
+            billService.cancelBill(AuthController.currentAccount, userSC);
             break;
           case 5:
             return;
@@ -112,7 +140,7 @@ public class UserController {
             cartService.deleteCartItem(userSC);
             break;
           case 5:
-            // TODO: THANH TOÁN GIỎ HÀNG
+            //  THANH TOÁN GIỎ HÀNG
             billService.createBill(AuthController.currentAccount);
             break;
           case 6:
@@ -175,7 +203,8 @@ public class UserController {
     System.out.println("2. Xem sản phẩm");
     System.out.println("3. Quản lý giỏ hàng");
     System.out.println("4. Quản lý hóa đơn");
-    System.out.println("5. Đăng xuất");
+    System.out.println("5. Nạp tiền vào tài khoản");
+    System.out.println("6. Đăng xuất");
     System.out.print("Nhập lựa chọn: ");
   }
 }

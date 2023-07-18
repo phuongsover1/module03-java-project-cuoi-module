@@ -13,6 +13,10 @@ public class BillService {
   private static final AccountService accountService = new AccountService();
 
   public void createBill(Account account) {
+    if (account.getCartItems().isEmpty()) {
+      System.err.println("Giỏ hàng đang trống. Hãy cho vật phẩm vào giỏ hàng trước");
+      return;
+    }
 
     Bill newBill = new Bill(account);
     newBill.setCartItems(new ArrayList<>(account.getCartItems()));
@@ -23,11 +27,13 @@ public class BillService {
       totalMoney = totalMoney.add(result);
     }
 
-    BigDecimal remainMoney =  account.getTotalCurrentMoney().subtract(totalMoney);
+    BigDecimal remainMoney = account.getTotalCurrentMoney().subtract(totalMoney);
     if (remainMoney.compareTo(new BigDecimal(0)) < 0) {
       System.err.println("Tài khoản không có đủ tiền, xin hãy nạp thêm");
       return;
     }
+    // Trừ tiền
+    account.setTotalCurrentMoney(remainMoney);
     newBill.setTotalMoney(totalMoney);
     account.getBills().add(newBill);
     account.setCartItems(new ArrayList<>());
@@ -43,6 +49,7 @@ public class BillService {
     }
     int i = 0;
     ArrayList<Bill> processingBills = new ArrayList<>();
+    System.out.println("==== DANH SÁCH HÓA ĐƠN ĐANG ĐƯỢC XỬ LÝ ====");
     for (Bill bill :
             bills) {
       if (bill.getBillStatus() == BillStatus.DANG_XU_LY) {
@@ -84,6 +91,7 @@ public class BillService {
     }
     int i = 0;
     ArrayList<Bill> successfulBills = new ArrayList<>();
+    System.out.println("==== DANH SÁCH HÓA ĐƠN ĐÃ THANH TOÁN THÀNH CÔNG ====");
     for (Bill bill :
             bills) {
       if (bill.getBillStatus() == BillStatus.DA_THANH_TOAN) {
@@ -175,6 +183,8 @@ public class BillService {
     }
     int i = 0;
     ArrayList<Bill> cancelBills = new ArrayList<>();
+
+    System.out.println("==== DANH SÁCH HÓA ĐƠN ĐÃ HỦY THANH TOÁN ====");
     for (Bill bill :
             bills) {
       if (bill.getBillStatus() == BillStatus.DA_HUY) {
@@ -206,5 +216,60 @@ public class BillService {
       }
 
     }
+  }
+
+  public void cancelBill(Account currentAccount, Scanner sc) {
+    ArrayList<Bill> accountBills = currentAccount.getBills();
+    if (accountBills.isEmpty()) {
+      System.err.println("Danh sách hóa đơn đang trống");
+      return;
+    }
+    ArrayList<Bill> processingBills = new ArrayList<>();
+    for (Bill bill :
+            accountBills) {
+      if (bill.getBillStatus() == BillStatus.DANG_XU_LY) {
+        processingBills.add(bill);
+      }
+    }
+    if(processingBills.isEmpty()){
+      System.err.println("Hiện tại không có hóa đơn nào đang chờ được xử lý để mà hủy.");
+      return;
+    }
+    int idBill;
+    while(true) {
+      displayBills(processingBills);
+      System.out.print("Hãy nhập id bill mà bạn muốn hủy. (Nhập '-1' nếu muốn thoát): ");
+      try {
+        idBill = Integer.parseInt(sc.nextLine());
+        if (idBill == -1){
+          return;
+        }
+        boolean isExist = false;
+        for (Bill bill:
+             processingBills) {
+          if (bill.getId() == idBill) {
+            isExist =true;
+            bill.setBillStatus(BillStatus.DA_HUY);
+            // TODO: Cộng tiền lại vào tài khoản
+            BigDecimal totalMoney = new BigDecimal(0);
+            for (CartItem cartItem :
+                    bill.getCartItems()) {
+              BigDecimal result = cartItem.getProduct().getPrice().multiply(new BigDecimal(cartItem.getQuantity()));
+              totalMoney = totalMoney.add(result);
+            }
+            currentAccount.setTotalCurrentMoney(currentAccount.getTotalCurrentMoney().add(totalMoney));
+            System.out.println("==== ĐÃ HỦY ĐƠN THÀNH CÔNG. SỐ TIỀN " + totalMoney + " ĐÃ ĐƯỢC TRẢ VỀ TÀI KHOẢN ====");
+            accountService.writeToFile();
+            return;
+          }
+        }
+        if (!isExist) {
+          System.err.println("Id bill bạn nhập vào không tồn tại. Hãy nhập lại");
+        }
+      }catch (NumberFormatException ex) {
+        System.err.println("Id của bill không hợp lệ. Hãy nhập lại.");
+      }
+    }
+
   }
 }
