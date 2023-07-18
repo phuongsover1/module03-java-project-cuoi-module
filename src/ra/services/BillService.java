@@ -13,6 +13,7 @@ public class BillService {
   private static final AccountService accountService = new AccountService();
 
   public void createBill(Account account) {
+
     Bill newBill = new Bill(account);
     newBill.setCartItems(new ArrayList<>(account.getCartItems()));
     BigDecimal totalMoney = new BigDecimal(0);
@@ -20,6 +21,12 @@ public class BillService {
             account.getCartItems()) {
       BigDecimal result = cartItem.getProduct().getPrice().multiply(new BigDecimal(cartItem.getQuantity()));
       totalMoney = totalMoney.add(result);
+    }
+
+    BigDecimal remainMoney =  account.getTotalCurrentMoney().subtract(totalMoney);
+    if (remainMoney.compareTo(new BigDecimal(0)) < 0) {
+      System.err.println("Tài khoản không có đủ tiền, xin hãy nạp thêm");
+      return;
     }
     newBill.setTotalMoney(totalMoney);
     account.getBills().add(newBill);
